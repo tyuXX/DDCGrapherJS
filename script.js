@@ -6,6 +6,8 @@ const xLengthInput = document.getElementById("xLength");
 const yLengthInput = document.getElementById("yLength");
 const iterationsInput = document.getElementById("iterations");
 const statusLabel = document.getElementById("statusLabel");
+const dynamicCheckbox = document.getElementById("isDynamic");
+
 
 let equations = [document.getElementById("equation1")];
 
@@ -13,6 +15,11 @@ function newEquation() {
   document.body.innerHTML += `<input class="textbox" type="text" id="equation${
     equations.length + 1
   }" placeholder="Enter your equation here (e.g. sin(x) + x^2)"></input>`;
+  equations[equations.length - 1].addEventListener("change", () => {
+    if (dynamicCheckbox.checked) {
+      drawGraph();
+    }
+  });
   equations.push(document.getElementById(`equation${equations.length + 1}`));
 }
 
@@ -90,3 +97,10 @@ function drawGraph() {
     });
   }, 1);
 }
+
+// Call the drawGraph function when the dynamic checkbox is checked
+equations[0].addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
