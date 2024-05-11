@@ -1,14 +1,39 @@
 const canvas = document.getElementById("graph");
 const ctx = canvas.getContext("2d");
 
-// Textboxes for axis lengths
+// Textboxes and elements
 const xLengthInput = document.getElementById("xLength");
 const yLengthInput = document.getElementById("yLength");
 const iterationsInput = document.getElementById("iterations");
 const statusLabel = document.getElementById("statusLabel");
 const dynamicCheckbox = document.getElementById("isDynamic");
+const equationContainer = document.getElementById("equation-container");
 
 let equations = [document.getElementById("equation1")];
+
+function newEquation() {
+  const newEquationId = `equation${equations.length + 1}`;
+  const newEquationInput = document.createElement("input");
+  newEquationInput.className = "textbox";
+  newEquationInput.type = "text";
+  newEquationInput.id = newEquationId;
+  newEquationInput.placeholder = `Enter your equation here (e.g. sin(x) + x^2)`;
+
+  // Add event listener for dynamic updates on new equations
+  newEquationInput.addEventListener("change", () => {
+    if (dynamicCheckbox.checked) {
+      drawGraph();
+    }
+  });
+
+  equationContainer.appendChild(newEquationInput);
+  equations.push({
+    box:newEquationInput,
+    color:rgb(randomInt(1,255),randomInt(1,255),randomInt(1,255))
+  });
+}
+
+// Call the drawGraph function when the dynamic checkbox is checked
 
 xLengthInput.addEventListener("change", () => {
   if (dynamicCheckbox.checked) {
@@ -26,17 +51,11 @@ iterationsInput.addEventListener("change", () => {
   }
 });
 
-function newEquation() {
-  document.body.innerHTML += `<input class="textbox" type="text" id="equation${
-    equations.length + 1
-  }" placeholder="Enter your equation here (e.g. sin(x) + x^2)"></input>`;
-  equations[equations.length - 1].addEventListener("change", () => {
-    if (dynamicCheckbox.checked) {
-      drawGraph();
-    }
-  });
-  equations.push(document.getElementById(`equation${equations.length + 1}`));
-}
+equations[0].box.addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
 
 // Function to evaluate the equation for a given x value
 function evaluate(x, equation) {
@@ -58,7 +77,7 @@ function drawGraph() {
   setTimeout(() => {
     const startTime = Date.now();
     equations.forEach((equation) => {
-      let equationText = equation.value.toLowerCase();
+      let equationText = equation.box.value.toLowerCase();
       // Get axis lengths from textboxes (handle potential errors)
       let xLength, yLength, iterations;
       try {
@@ -113,13 +132,6 @@ function drawGraph() {
   }, 1);
 }
 
-// Call the drawGraph function when the dynamic checkbox is checked
-equations[0].addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-
 //Export the drawn graph as a .png file
 function ExportGraph() {
   const canvas = document.getElementById("graph");
@@ -128,4 +140,8 @@ function ExportGraph() {
   link.href = dataUrl;
   link.download = "graph.png";
   link.click();
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

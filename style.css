@@ -1,4 +1,4 @@
-  body {
+body {
   font-family: sans-serif;
   margin: 20px;
   background-color: #3b3b3b;
@@ -16,11 +16,40 @@ h1 {
   background-color: #3b3b3b;
 }
 
+.equationtbox {
+  width: 175px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000000;
+  background-color: #3b3b3b;
+}
+
+#sidebar {
+  width: 195px; /* Define sidebar width */
+  height: 100vh; /* Set sidebar height to full viewport */
+  border: 1px solid #000000;
+  padding: 10px;
+  background-color: #2e2e2e; /* Adjust sidebar background color */
+  color: #fff; /* Set sidebar text color to white */
+  position: fixed; /* Fix sidebar position */
+  top: 0; /* Position sidebar at the top */
+  left: 0; /* Position sidebar at the left */
+  z-index: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+#main-content {
+  flex: 1; /* Allow main content to fill remaining space */
+  padding: 10px;
+  overflow-y: scroll; /* Enable scrolling for main content */
+}
+
 #graph-container {
-  width: 100%;
-  height: 100%;
+  width: 100%; /* Maintain full width within main content */
+  height: 100%; /* Set height for the graph container */
   border: 1px solid #000000;
   margin: 0 auto;
+  background-color: #616161;
 }
 
 #graph {
@@ -28,6 +57,7 @@ h1 {
   height: 100%;
   background-color: #616161;
 }
+
 button {
   padding: 10px 20px;
   background-color: #3b3b3b;
