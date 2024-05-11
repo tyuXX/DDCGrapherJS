@@ -17,7 +17,7 @@ h1 {
 }
 
 .equationtbox {
-  width: 175px;
+  width: 14vw;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #000000;
@@ -25,10 +25,10 @@ h1 {
 }
 
 #sidebar {
-  width: 195px; /* Define sidebar width */
+  width: 15vw; /* Define sidebar width */
   height: 100vh; /* Set sidebar height to full viewport */
   border: 1px solid #000000;
-  padding: 10px;
+  padding: 1vw;
   background-color: #2e2e2e; /* Adjust sidebar background color */
   color: #fff; /* Set sidebar text color to white */
   position: fixed; /* Fix sidebar position */
