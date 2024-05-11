@@ -28,8 +28,8 @@ function newEquation() {
 
   equationContainer.appendChild(newEquationInput);
   equations.push({
-    box:newEquationInput,
-    color:rgb(randomInt(1,255),randomInt(1,255),randomInt(1,255))
+    box: newEquationInput,
+    color: rgb(randomInt(1, 255), randomInt(1, 255), randomInt(1, 255)),
   });
 }
 
