@@ -8,8 +8,23 @@ const iterationsInput = document.getElementById("iterations");
 const statusLabel = document.getElementById("statusLabel");
 const dynamicCheckbox = document.getElementById("isDynamic");
 
-
 let equations = [document.getElementById("equation1")];
+
+xLengthInput.addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
+yLengthInput.addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
+iterationsInput.addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
 
 function newEquation() {
   document.body.innerHTML += `<input class="textbox" type="text" id="equation${
@@ -104,3 +119,13 @@ equations[0].addEventListener("change", () => {
     drawGraph();
   }
 });
+
+//Export the drawn graph as a .png file
+function ExportGraph() {
+  const canvas = document.getElementById("graph");
+  const dataUrl = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = "graph.png";
+  link.click();
+}

@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Input Equation</h1>
+    <img src="https://komarev.com/ghpvc/?username=ddcgrapher&label=DDCGrapher&color=0e75b6&style=flat" alt="tyuxx" /> </p>
+    <h1>DDCGrapher made by [tyuXX] - Input Equation</h1>
+    <h2 id="statusLabel">Status: Idle</h2>
     <input class="textbox" type="text" id="equation1" placeholder="Enter your equation here (e.g. sin(x) + x^2)">
     <input class="textbox" type="text" id="xLength" placeholder="X-axis Length">
     <input class="textbox" type="text" id="yLength" placeholder="Y-axis Length">
     <input class="textbox" type="text" id="iterations" placeholder="Number of iterations to calculate">  
-    <label id="statusLabel">Status: Idle</label>
     <button type="button" onclick="drawGraph()">Graph</button>
+    <label>Dynamic Graph Toggle =></label>
     <input type="checkbox" id="isDynamic">
     <button type="button" onclick="newEquation()">New</button>
+    <button type="button" onclick="ExportGraph()">Export as PNG file</button>
     <div id="graph-container">
         <canvas id="graph"></canvas>
     </div>
