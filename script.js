@@ -29,7 +29,7 @@ function newEquation() {
   equationContainer.appendChild(newEquationInput);
   equations.push({
     box: newEquationInput,
-    color: rgb(randomInt(1, 255), randomInt(1, 255), randomInt(1, 255))
+    color: rgb(randomInt(1, 255), randomInt(1, 255), randomInt(1, 255)),
   });
 }
 
@@ -56,6 +56,16 @@ equations[0].box.addEventListener("change", () => {
     drawGraph();
   }
 });
+
+// Add event listeners for dynamic updates
+dynamicCheckbox.addEventListener("change", () => {
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+});
+
+// Add event listener for adding new equations
+document.getElementById("addEquation").addEventListener("click", newEquation);
 
 // Function to evaluate the equation for a given x value
 function evaluate(x, equation) {
@@ -129,7 +139,33 @@ function drawGraph() {
       const elapsedTime = Date.now() - startTime;
       statusLabel.textContent = `Status: Done (${elapsedTime}ms)`;
     });
+
+    addLines();
   }, 1);
+}
+
+function addLines() {
+  //Add axis lines
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(canvas.width, 0);
+  ctx.lineTo(canvas.width, canvas.height);
+  ctx.lineTo(0, canvas.height);
+  ctx.stroke();
+
+  //Add labels to the axis lines
+
+  ctx.font = "12px Arial";
+  ctx.fillStyle = "black";
+  ctx.textAlign = "center";
+  ctx.fillText("x", canvas.width / 2, canvas.height - 5);
+  ctx.textAlign = "start";
+  ctx.fillText("y", 5, 15);
+  ctx.textAlign = "end";
+  ctx.fillText("x", canvas.width - 5, 15);
+  ctx.textAlign = "center";
+  ctx.fillText("y", canvas.width / 2, 15);
 }
 
 //Export the drawn graph as a .png file
@@ -145,3 +181,6 @@ function ExportGraph() {
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Initialize the graph with default values
+addLines();
