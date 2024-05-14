@@ -64,9 +64,6 @@ dynamicCheckbox.addEventListener("change", () => {
   }
 });
 
-// Add event listener for adding new equations
-document.getElementById("addEquation").addEventListener("click", newEquation);
-
 // Function to evaluate the equation for a given x value
 function evaluate(x, equation) {
   // Use mathjs to evaluate the expression with x as the variable

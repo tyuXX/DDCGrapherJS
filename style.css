@@ -24,6 +24,12 @@ h1 {
   background-color: #3b3b3b;
 }
 
+#sidebartoggle{
+  z-index: 0;
+  left: 16vw;
+  top: 50vh
+}
+
 #sidebar {
   width: 15vw; /* Define sidebar width */
   height: 100vh; /* Set sidebar height to full viewport */
@@ -34,27 +40,26 @@ h1 {
   position: fixed; /* Fix sidebar position */
   top: 0; /* Position sidebar at the top */
   left: 0; /* Position sidebar at the left */
-  z-index: 0;
+  z-index: 1;
   overflow-x: hidden; /* Disable horizontal scroll */
 }
 
 #main-content {
-  flex: 1; /* Allow main content to fill remaining space */
   padding: 10px;
   overflow-y: scroll; /* Enable scrolling for main content */
 }
 
 #graph-container {
-  width: 75%; /* Maintain full width within main content */
-  height: 75%; /* Set height for the graph container */
+  width: 75vw; /* Maintain full width within main content */
+  height: 75vh; /* Set height for the graph container */
   border: 1px solid #000000;
   margin: 0 auto;
   background-color: #616161;
 }
 
 #graph {
-  width: 75%;
-  height: 75%;
+  width: 75vw;
+  height: 75vh;
   background-color: #616161;
 }
 

@@ -9,6 +9,8 @@
   <body>
     <div id="sidebar">
       <h2>Equations</h2>
+      <button type="button" onclick="newEquation()">New Equation</button>
+      <h6 class="spacing"></h6>
       <div id="equation-container">
         <input
           class="equationtbox"
@@ -18,13 +20,17 @@
         />
       </div>
     </div>
+    <div id="sidebartoggle">
+      <button type="button" id="sidebaroff"><<</button>
+      <button type="button" id="sidebaron">>></button>
+    </div>
 
     <div id="main-content">
       <img
         src="https://komarev.com/ghpvc/?username=ddcgrapher&label=DDCGrapher&color=0e75b6&style=flat"
         alt="tyuxx"
       />
-      <h1>DDCGrapher made by [tyuXX]</h1>
+      <h2>DDCGrapher made by [tyuXX]</h2>
       <h2 id="statusLabel">Status: Idle</h2>
       <input
         class="textbox"
@@ -44,10 +50,8 @@
         id="iterations"
         placeholder="Number of iterations to calculate"
       />
-      <label>Dynamic Graph Toggle =></label>
-      <input type="checkbox" id="isDynamic" />
       <button type="button" onclick="drawGraph()">Graph</button>
-      <button type="button" onclick="newEquation()">New Equation</button>
+      <input type="checkbox" id="isDynamic" title="Dynamically update graph" />
       <button type="button" onclick="ExportGraph()">Export as PNG file</button>
       <div id="graph-container">
         <canvas id="graph"></canvas>
