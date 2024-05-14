@@ -8,6 +8,14 @@
   </head>
   <body>
     <div id="sidebar">
+      <button
+        title="Close Sidebar"
+        type="button"
+        id="sidebaroff"
+        onclick="SidebarToggle()"
+      >
+        <<
+      </button>
       <h2>Equations</h2>
       <button type="button" onclick="newEquation()">New Equation</button>
       <h6 class="spacing"></h6>
@@ -19,17 +27,18 @@
           placeholder="Enter your equation here (e.g. sin(x) + x^2)"
         />
       </div>
+      <textarea id="graphHistory" readonly="true" placeholder="Graph History (Resets at ~5mb)"></textarea>
     </div>
-    <div id="sidebartoggle">
-      <button type="button" id="sidebaroff"><<</button>
-      <button type="button" id="sidebaron">>></button>
-    </div>
+    <button
+      title="Open Sidebar"
+      type="button"
+      id="sidebaron"
+      onclick="SidebarToggle()"
+    >
+      >>
+    </button>
 
     <div id="main-content">
-      <img
-        src="https://komarev.com/ghpvc/?username=ddcgrapher&label=DDCGrapher&color=0e75b6&style=flat"
-        alt="tyuxx"
-      />
       <h2>DDCGrapher made by [tyuXX]</h2>
       <h2 id="statusLabel">Status: Idle</h2>
       <input
