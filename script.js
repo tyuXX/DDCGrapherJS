@@ -150,12 +150,13 @@ function drawGraph() {
     addLines();
 
     //Add history
-    graphHistory.textContent+=`\n\nEquations:\n`
+    graphHistory.textContent+=`\n\nEqs:\n`
     let eqid = 1;
     equations.forEach((equation) =>{
-      graphHistory.textContent+=`Eq#${eqid}:${equation.box.textContent};`
+      graphHistory.textContent+=`Eq#${eqid}:"${equation.box.textContent}";`
       eqid++;
     });
+    graphHistory.textContent+=`GI:"${canvas.toDataURL("image/png")}"`
   }, 1);
 }
 
@@ -189,7 +190,7 @@ function addLines() {
 //Export the drawn graph as a .png file
 function ExportGraph() {
   const dataUrl = canvas.toDataURL("image/png");
-  const link = document.createElement("placeholder");
+  const link = document.createElement("a");
   link.href = dataUrl;
   link.download = "graph.png";
   link.click();
@@ -209,6 +210,9 @@ function SidebarToggle() {
   sideBar.style.display = "block";
   isSidebar = true;
 }
+
+//String compression funtion
+
 
 // Initialize the graph with default values
 addLines();
