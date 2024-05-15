@@ -12,16 +12,23 @@ const sideBar = document.getElementById("sidebar");
 const graphHistory = document.getElementById("graphHistory");
 
 //Variables
-let equations = [{box:document.getElementById("equation1"),r:0,g:0,b:0}];
+let equations = [
+  { box: document.getElementById("equation1"), r: 0, g: 0, b: 0 },
+];
 let isSidebar = false;
 
 function newEquation() {
+  const rc = randomInt(10, 255);
+  const gc = randomInt(10, 255);
+  const bc = randomInt(10, 255);
+
   const newEquationId = `equation${equations.length + 1}`;
   const newEquationInput = document.createElement("input");
   newEquationInput.className = "equationtbox";
   newEquationInput.type = "text";
   newEquationInput.id = newEquationId;
   newEquationInput.placeholder = `Enter your equation here (e.g. sin(x) + x^2)`;
+  newEquationInput.style.backgroundColor = '#' + rc.toString(16) + gc.toString(16) + bc.toString(16);
 
   // Add event listener for dynamic updates on new equations
   newEquationInput.addEventListener("change", () => {
@@ -33,10 +40,20 @@ function newEquation() {
   equationContainer.appendChild(newEquationInput);
   equations.push({
     box: newEquationInput,
-    r:randomInt(10,255),
-    g:randomInt(10,255),
-    b:randomInt(10,255)
+    r: rc,
+    g: gc,
+    b: bc
   });
+}
+
+function clearEquations(){
+  equationContainer.innerHTML = "";
+  equations = [];
+  newEquation();
+  equations[0].r = 0;
+  equations[0].g = 0;
+  equations[0].b = 0;
+  equations[0].box.style.backgroundColor = '#3b3b3b';
 }
 
 // Call the drawGraph function when the dynamic checkbox is checked
@@ -86,6 +103,7 @@ function drawGraph() {
 
   // Clear the canvas before drawing
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  addLines();
 
   setTimeout(() => {
     const startTime = Date.now();
@@ -114,9 +132,18 @@ function drawGraph() {
       const xScale = canvas.width / (xmax - xmin);
       const yScale = canvas.height / (ymax - ymin);
 
-      console.log("color is" + equation.r.toString() + equation.b.toString() + equation.g.toString());
+      console.log(
+        "color is" +
+          equation.r.toString(16) +
+          equation.b.toString(16) +
+          equation.g.toString(16)
+      );
 
-      ctx.strokeStyle = equation.r.toString() + equation.b.toString() + equation.g.toString();
+      ctx.strokeStyle =
+        "#" +
+        equation.r.toString(16) +
+        equation.b.toString(16) +
+        equation.g.toString(16);
 
       ctx.beginPath();
 
@@ -142,49 +169,52 @@ function drawGraph() {
 
       // Draw axis lines and labels (optional)
       // ...
-
-      const elapsedTime = Date.now() - startTime;
-      statusLabel.textContent = `Status: Done (${elapsedTime}ms)`;
     });
 
-    addLines();
+    // Calculate elapsed time
+    const elapsedTime = Date.now() - startTime;
+    statusLabel.textContent = `Status: Done (${elapsedTime}ms)`;
+
+    
 
     //Add history
-    graphHistory.textContent+=`\n\nEqs:\n`
+    graphHistory.textContent += `\n\nEqs:\n`;
     let eqid = 1;
-    equations.forEach((equation) =>{
-      graphHistory.textContent+=`Eq#${eqid}:"${equation.box.textContent}";`
+    equations.forEach((equation) => {
+      graphHistory.textContent += `Eq#${eqid}:"${equation.box.textContent}";`;
       eqid++;
     });
-    graphHistory.textContent+=`GI:"${canvas.toDataURL("image/png")}"`
+    graphHistory.textContent += `GI:"${canvas.toDataURL("image/png")}"`;
   }, 1);
 }
 
 function addLines() {
   //Add axis lines
 
-  ctx.strokeStyle = "red"
+  ctx.strokeStyle = "red";
 
   ctx.beginPath();
-  ctx.moveTo(0, canvas.height/2);
-  ctx.lineTo(canvas.width, canvas.height/2);
-  ctx.moveTo(canvas.width/2, 0);
-  ctx.lineTo(canvas.width/2, canvas.height);
+  ctx.moveTo(0, canvas.height / 2);
+  ctx.lineTo(canvas.width, canvas.height / 2);
+  ctx.moveTo(canvas.width / 2, 0);
+  ctx.lineTo(canvas.width / 2, canvas.height);
   ctx.stroke();
 
   //Add labels to the axis lines
 
-  
   ctx.font = "12px Arial";
   ctx.fillStyle = "blue";
   ctx.textAlign = "center";
   ctx.fillText("y", canvas.width / 2, canvas.height - 5);
   ctx.textAlign = "start";
-  ctx.fillText("x", 5, canvas.height /2);
+  ctx.fillText("x", 5, canvas.height / 2);
   ctx.textAlign = "end";
-  ctx.fillText("x", canvas.width - 5, canvas.height /2);
+  ctx.fillText("x", canvas.width - 5, canvas.height / 2);
   ctx.textAlign = "center";
   ctx.fillText("y", canvas.width / 2, 15);
+
+  ctx.strokeStyle = "black";
+  ctx.fillStyle = "black";
 }
 
 //Export the drawn graph as a .png file
@@ -212,7 +242,6 @@ function SidebarToggle() {
 }
 
 //String compression funtion
-
 
 // Initialize the graph with default values
 addLines();
