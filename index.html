@@ -64,7 +64,9 @@
       />
       <button type="button" onclick="drawGraph()">Graph</button>
       <input type="checkbox" id="isDynamic" title="Dynamically update graph" />
-      <button type="button" onclick="ExportGraph()">Export as PNG file</button>
+      <button type="button" onclick="ExportGraphImage()">Export as .png file</button>
+      <button type="button" onclick="ExportGraphText()">Export as .txt file</button>
+      <button type="button" onclick="ImportGraphText()">Import from .txt</button>
       <div id="graph-container">
         <canvas id="graph"></canvas>
       </div>
