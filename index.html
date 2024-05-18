@@ -30,7 +30,11 @@
           placeholder="Enter your equation here (e.g. sin(x) + x^2)"
         />
       </div>
-      <textarea id="graphHistory" readonly="true" placeholder="Graph History (Resets at ~5mb)"></textarea>
+      <textarea
+        id="graphHistory"
+        readonly="true"
+        placeholder="Graph History (Resets at ~5mb)"
+      ></textarea>
     </div>
     <button
       title="Open Sidebar"
@@ -40,7 +44,7 @@
     >
       >>
     </button>
-
+    <button onclick="ThemeToggle()" id="themeButton">Set theme</button>
     <div id="main-content">
       <h2>DDCGrapher made by [tyuXX]</h2>
       <h2 id="statusLabel">Status: Idle</h2>
@@ -64,9 +68,15 @@
       />
       <button type="button" onclick="drawGraph()">Graph</button>
       <input type="checkbox" id="isDynamic" title="Dynamically update graph" />
-      <button type="button" onclick="ExportGraphImage()">Export as .png file</button>
-      <button type="button" onclick="ExportGraphText()">Export as .txt file</button>
-      <button type="button" onclick="ImportGraphText()">Import from .txt</button>
+      <button type="button" onclick="ExportGraphImage()">
+        Export as .png file
+      </button>
+      <button type="button" onclick="ExportGraphText()">
+        Export as .txt file
+      </button>
+      <button type="button" onclick="ImportGraphText()">
+        Import from .txt
+      </button>
       <div id="graph-container">
         <canvas id="graph"></canvas>
       </div>

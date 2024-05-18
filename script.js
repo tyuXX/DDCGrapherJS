@@ -1,5 +1,6 @@
 const canvas = document.getElementById("graph");
 const ctx = canvas.getContext("2d");
+ctx.lineWidth = 2;
 
 // Textboxes and elements
 const xLengthInput = document.getElementById("xLength");
@@ -10,12 +11,14 @@ const dynamicCheckbox = document.getElementById("isDynamic");
 const equationContainer = document.getElementById("equation-container");
 const sideBar = document.getElementById("sidebar");
 const graphHistory = document.getElementById("graphHistory");
+const themeButton = document.getElementById("setTheme");
 
 //Variables
 let equations = [
   { box: document.getElementById("equation1"), r: 0, g: 0, b: 0 },
 ];
 let isSidebar = false;
+let theme = 1;
 
 function newEquation() {
   const rc = randomInt(10, 255);
@@ -183,7 +186,7 @@ function drawGraph() {
 function addLines() {
   //Add axis lines
 
-  ctx.strokeStyle = "red";
+  ctx.strokeStyle = "#316DCA";
 
   ctx.beginPath();
   ctx.moveTo(0, canvas.height / 2);
@@ -195,7 +198,7 @@ function addLines() {
   //Add labels to the axis lines
 
   ctx.font = "12px Arial";
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "#5E94CA";
   ctx.textAlign = "center";
   ctx.fillText("y", canvas.width / 2, canvas.height - 5);
   ctx.textAlign = "start";
@@ -292,6 +295,94 @@ function LoadString(string) {
   equations.forEach((equation, index) => {
     equation.box.value = eqs[index];
   });
+}
+
+function setTheme(id) {
+  switch (id) {
+    case 1:
+      //the default theme from style.css
+      document.body.style.backgroundColor = "#222";
+      document.body.style.color = "#fff";
+      document.getElementById("graph").style.backgroundColor = "#333";
+      document.getElementById("graph").style.color = "#fff";
+      document.getElementById("sidebar").style.backgroundColor = "#333";
+      document.getElementById("sidebar").style.color = "#fff";
+      document.getElementById("equation-container").style.backgroundColor =
+        "#333";
+      document.getElementById("equation-container").style.backgroundColor = "#fff";
+      document.getElementById("statusLabel").style.color = "#fff";
+      document.getElementById("xLength").style.backgroundColor = "#fff";
+      document.getElementById("yLength").style.backgroundColor = "#fff";
+      document.getElementById("iterations").style.backgroundColor = "#fff";
+      document.getElementById("dynamicCheckbox").style.backgroundColor = "#fff";
+      document.getElementById("newEquationButton").style.backgroundColor = "#fff";
+      document.getElementById("clearEquationsButton").style.backgroundColor = "#fff";
+      document.getElementById("exportGraphImageButton").style.backgroundColor = "#fff";
+      document.getElementById("exportGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("importGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("sidebarButton").style.backgroundColor = "#fff";
+      document.getElementById("themeButton").style.backgroundColor = "#fff";
+      document.getElementById("themeButton").style.backgroundColor = "#333";
+      break;
+    case 2:
+      //the dark theme
+      document.body.style.backgroundColor = "#222";
+      document.body.style.color = "#fff";
+      document.getElementById("graph").style.backgroundColor = "#333";
+      document.getElementById("graph").style.color = "#fff";
+      document.getElementById("sidebar").style.backgroundColor = "#333";
+      document.getElementById("sidebar").style.color = "#fff";
+      document.getElementById("equation-container").style.backgroundColor =
+        "#333";
+      document.getElementById("equation-container").style.color = "#fff";
+      document.getElementById("statusLabel").style.color = "#fff";
+      document.getElementById("xLength").style.backgroundColor = "#fff";
+      document.getElementById("yLength").style.backgroundColor = "#fff";
+      document.getElementById("iterations").style.backgroundColor = "#fff";
+      document.getElementById("dynamicCheckbox").style.backgroundColor = "#fff";
+      document.getElementById("newEquationButton").style.backgroundColor = "#fff";
+      document.getElementById("clearEquationsButton").style.backgroundColor = "#fff";
+      document.getElementById("exportGraphImageButton").style.backgroundColor = "#fff";
+      document.getElementById("exportGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("importGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("sidebarButton").style.backgroundColor = "#fff";
+      document.getElementById("themeButton").style.backgroundColor = "#fff";
+      document.getElementById("themeButton").style.backgroundColor = "#333";
+      break;
+    case 3:
+      //the light theme
+      document.body.style.backgroundColor = "#fff";
+      document.body.style.color = "#000";
+      document.getElementById("graph").style.backgroundColor = "#eee";
+      document.getElementById("graph").style.color = "#000";
+      document.getElementById("sidebar").style.backgroundColor = "#eee";
+      document.getElementById("sidebar").style.color = "#000";
+      document.getElementById("equation-container").style.backgroundColor =
+        "#eee";
+      document.getElementById("equation-container").style.color = "#000";
+      document.getElementById("statusLabel").style.color = "#000";
+      document.getElementById("xLength").style.backgroundColor = "#000";
+      document.getElementById("yLength").style.backgroundColor = "#000";
+      document.getElementById("iterations").style.backgroundColor = "#000";
+      document.getElementById("dynamicCheckbox").style.backgroundColor = "#000";
+      document.getElementById("newEquationButton").style.backgroundColor = "#000";
+      document.getElementById("clearEquationsButton").style.backgroundColor = "#000";
+      document.getElementById("exportGraphImageButton").style.backgroundColor = "#000";
+      document.getElementById("exportGraphTextButton").style.backgroundColor = "#000";
+      document.getElementById("importGraphTextButton").style.backgroundColor = "#000";
+      document.getElementById("sidebarButton").style.backgroundColor = "#000";
+      document.getElementById("themeButton").style.backgroundColor = "#000";
+      document.getElementById("themeButton").style.backgroundColor = "#eee";
+      break;
+    default:
+      break;
+  }
+}
+
+function ThemeToggle() {
+  theme++;
+  theme %= 4;
+  setTheme(theme);
 }
 
 //String compression funtion

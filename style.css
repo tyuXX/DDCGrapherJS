@@ -1,11 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 20px;
-  background-color: #3b3b3b;
-}
-
-h1 {
-  text-align: center;
+  background-color: #22272e;
 }
 
 .textbox {
@@ -13,7 +9,8 @@ h1 {
   padding: 10px;
   margin-bottom: 1vh;
   border: 1px solid #000000;
-  background-color: #3b3b3b;
+  background-color: #22272e;
+  color: #316dca;
 }
 
 .equationtbox {
@@ -22,15 +19,18 @@ h1 {
   padding: 1vw;
   margin-bottom: 0.1vh;
   border: 1px solid #000000;
-  background-color: #3b3b3b;
+  background-color: #22272e;
+  color: #316dca;
 }
-#graphHistory{
+
+#graphHistory {
   width: 13vw;
   height: fit-content;
   resize: none;
   padding: 1vw;
   border: 1px solid #000000;
-  background-color: #3b3b3b;
+  background-color: #22272e;
+  color: #316dca;
 }
 
 #sidebar {
@@ -38,7 +38,7 @@ h1 {
   height: 100vh; /* Set sidebar height to full viewport */
   border: 1px solid #000000;
   padding: 1vw;
-  background-color: #2e2e2e; /* Adjust sidebar background color */
+  background-color: #1c2128; /* Adjust sidebar background color */
   color: #fff; /* Set sidebar text color to white */
   position: fixed; /* Fix sidebar position */
   top: 0; /* Position sidebar at the top */
@@ -51,6 +51,7 @@ h1 {
 #main-content {
   padding: 10px;
   overflow-y: scroll; /* Enable scrolling for main content */
+  color: #316dca;
 }
 
 #graph-container {
@@ -65,22 +66,23 @@ h1 {
   width: 75vw;
   height: 71vh;
   background-color: #616161;
+  image-rendering: crisp-edges;
 }
 
 button {
   padding: 10px 20px;
-  background-color: #3b3b3b;
-  color: #000000;
+  background-color: #22272e;
+  color: #316dca;
   border: 1px solid #000000;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #8f8f8f;
-  color: #000000;
+  background-color: #1c2128;
+  color: #316dca;
 }
 
 button:active {
-  background-color: #d3d3d3;
-  color: #000000;
+  background-color: #1c2128;
+  color: #316dca;
 }
