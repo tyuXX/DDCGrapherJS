@@ -12,6 +12,7 @@ const equationContainer = document.getElementById("equation-container");
 const sideBar = document.getElementById("sidebar");
 const graphHistory = document.getElementById("graphHistory");
 const themeButton = document.getElementById("setTheme");
+const fixScalingCheckbox = document.getElementById("fixScaling");
 
 //Variables
 let equations = [
@@ -19,6 +20,28 @@ let equations = [
 ];
 let isSidebar = false;
 let theme = 1;
+let center = {x:0,y:0};
+
+// Call the drawGraph function when the dynamic checkbox is checked
+xLengthInput.addEventListener("change", dCheck);
+xLengthInput.addEventListener("change", fCheck);
+yLengthInput.addEventListener("change", dCheck);
+yLengthInput.addEventListener("change", fCheck);
+iterationsInput.addEventListener("change", dCheck);
+equations[0].box.addEventListener("change", dCheck);
+dynamicCheckbox.addEventListener("change", dCheck);
+
+function dCheck(){
+  if (dynamicCheckbox.checked) {
+    drawGraph();
+  }
+}
+
+function fCheck(){
+  if (fixScalingCheckbox.checked) {
+    yLengthInput.textContent = xLengthInput.textContent * (canvas.height / canvas.width);
+  }
+}
 
 function newEquation() {
   const rc = randomInt(10, 255);
@@ -35,11 +58,7 @@ function newEquation() {
     "#" + rc.toString(16) + gc.toString(16) + bc.toString(16);
 
   // Add event listener for dynamic updates on new equations
-  newEquationInput.addEventListener("change", () => {
-    if (dynamicCheckbox.checked) {
-      drawGraph();
-    }
-  });
+  newEquationInput.addEventListener("change", dCheck);
 
   equationContainer.appendChild(newEquationInput);
   equations.push({
@@ -60,37 +79,6 @@ function clearEquations() {
   equations[0].box.style.backgroundColor = "#3b3b3b";
 }
 
-// Call the drawGraph function when the dynamic checkbox is checked
-
-xLengthInput.addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-yLengthInput.addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-iterationsInput.addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-
-equations[0].box.addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-
-// Add event listeners for dynamic updates
-dynamicCheckbox.addEventListener("change", () => {
-  if (dynamicCheckbox.checked) {
-    drawGraph();
-  }
-});
-
 // Function to evaluate the equation for a given x value
 function evaluate(x, equation) {
   // Use mathjs to evaluate the expression with x as the variable
@@ -108,6 +96,9 @@ function drawGraph() {
   // Clear the canvas before drawing
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   addLines();
+
+  //Reset center point
+  center = {x:0,y:0};
 
   setTimeout(() => {
     const startTime = Date.now();
@@ -128,10 +119,10 @@ function drawGraph() {
       }
 
       // Calculate axis center based on canvas size and desired length
-      const xmin = -xLength / 2;
-      const xmax = xLength / 2;
-      const ymin = -yLength / 2;
-      const ymax = yLength / 2;
+      const xmin = center.x - (xLength / 2);
+      const xmax = center.x + (xLength / 2);
+      const ymin = center.y - (yLength / 2);
+      const ymax = center.y + (yLength / 2);
 
       const xScale = canvas.width / (xmax - xmin);
       const yScale = canvas.height / (ymax - ymin);

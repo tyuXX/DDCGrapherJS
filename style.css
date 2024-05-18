@@ -55,7 +55,7 @@ body {
 }
 
 #graph-container {
-  width: 75vw; /* Maintain full width within main content */
+  width: 90vw; /* Maintain full width within main content */
   height: 71vh; /* Set height for the graph container */
   border: 1px solid #000000;
   margin: 0 auto;
@@ -63,7 +63,7 @@ body {
 }
 
 #graph {
-  width: 75vw;
+  width: 90vw;
   height: 71vh;
   background-color: #616161;
   image-rendering: crisp-edges;
