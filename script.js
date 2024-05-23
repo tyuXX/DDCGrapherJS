@@ -238,6 +238,26 @@ function ImportGraphText() {
   fileInput.click();
 }
 
+
+//Import the graph from the link
+function ImportFromRefLink(){
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  if(!urlSearchParams.has("graf")) {return;}
+  const str = urlSearchParams.get("graf") || "";
+  if(str != ""){
+    LoadString(decodeURIComponent(str));
+    drawGraph();
+  }
+}
+
+//Export the graph as a link
+function ExportToRefLink(){
+  const link = document.createElement("a");
+  link.href = "data:text/plain;charset=utf-8," + location.origin + location.pathname + "?graf=" + encodeURIComponent(StringfyEqs());
+  link.download = "graphlink.txt";
+  link.click();
+}
+
 //Random integer
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -268,7 +288,6 @@ function StringfyEqs() {
     rs += equation.box.value + ";";
   });
   rs.trimEnd(";");
-  console.log(rs);
   return btoa(rs);
 }
 
@@ -377,6 +396,6 @@ function ThemeToggle() {
 }
 
 
-
+ImportFromRefLink();
 // Initialize the graph with default values
 addLines();
