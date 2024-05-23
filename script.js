@@ -376,7 +376,7 @@ function ThemeToggle() {
   setTheme(theme);
 }
 
-//String compression funtion
+
 
 // Initialize the graph with default values
 addLines();
