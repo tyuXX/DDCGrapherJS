@@ -20,7 +20,7 @@ let equations = [
 ];
 let isSidebar = false;
 let theme = 1;
-let center = {x:0,y:0};
+let center = { x: 0, y: 0 };
 
 // Call the drawGraph function when the dynamic checkbox is checked
 xLengthInput.addEventListener("change", dCheck);
@@ -31,15 +31,16 @@ iterationsInput.addEventListener("change", dCheck);
 equations[0].box.addEventListener("change", dCheck);
 dynamicCheckbox.addEventListener("change", dCheck);
 
-function dCheck(){
+function dCheck() {
   if (dynamicCheckbox.checked) {
     drawGraph();
   }
 }
 
-function fCheck(){
+function fCheck() {
   if (fixScalingCheckbox.checked) {
-    yLengthInput.textContent = xLengthInput.textContent * (canvas.height / canvas.width);
+    yLengthInput.textContent =
+      xLengthInput.textContent * (canvas.height / canvas.width);
   }
 }
 
@@ -98,7 +99,7 @@ function drawGraph() {
   addLines();
 
   //Reset center point
-  center = {x:0,y:0};
+  center = { x: 0, y: 0 };
 
   setTimeout(() => {
     const startTime = Date.now();
@@ -119,10 +120,10 @@ function drawGraph() {
       }
 
       // Calculate axis center based on canvas size and desired length
-      const xmin = center.x - (xLength / 2);
-      const xmax = center.x + (xLength / 2);
-      const ymin = center.y - (yLength / 2);
-      const ymax = center.y + (yLength / 2);
+      const xmin = center.x - xLength / 2;
+      const xmax = center.x + xLength / 2;
+      const ymin = center.y - yLength / 2;
+      const ymax = center.y + yLength / 2;
 
       const xScale = canvas.width / (xmax - xmin);
       const yScale = canvas.height / (ymax - ymin);
@@ -238,22 +239,25 @@ function ImportGraphText() {
   fileInput.click();
 }
 
-
 //Import the graph from the link
-function ImportFromRefLink(){
+function ImportFromRefLink() {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  if(!urlSearchParams.has("graf")) {return;}
-  const str = urlSearchParams.get("graf") || "";
-  if(str != ""){
-    LoadString(decodeURIComponent(str));
-    drawGraph();
+  if (!urlSearchParams.has("graf")) {
+    return;
   }
+  LoadString(decodeURIComponent(urlSearchParams.get("graf")));
+  drawGraph();
 }
 
 //Export the graph as a link
-function ExportToRefLink(){
+function ExportToRefLink() {
   const link = document.createElement("a");
-  link.href = "data:text/plain;charset=utf-8," + location.origin + location.pathname + "?graf=" + encodeURIComponent(StringfyEqs());
+  link.href =
+    "data:text/plain;charset=utf-8," +
+    location.origin +
+    location.pathname +
+    "?graf=" +
+    encodeURIComponent(StringfyEqs());
   link.download = "graphlink.txt";
   link.click();
 }
@@ -319,17 +323,23 @@ function setTheme(id) {
       document.getElementById("sidebar").style.color = "#fff";
       document.getElementById("equation-container").style.backgroundColor =
         "#333";
-      document.getElementById("equation-container").style.backgroundColor = "#fff";
+      document.getElementById("equation-container").style.backgroundColor =
+        "#fff";
       document.getElementById("statusLabel").style.color = "#fff";
       document.getElementById("xLength").style.backgroundColor = "#fff";
       document.getElementById("yLength").style.backgroundColor = "#fff";
       document.getElementById("iterations").style.backgroundColor = "#fff";
       document.getElementById("dynamicCheckbox").style.backgroundColor = "#fff";
-      document.getElementById("newEquationButton").style.backgroundColor = "#fff";
-      document.getElementById("clearEquationsButton").style.backgroundColor = "#fff";
-      document.getElementById("exportGraphImageButton").style.backgroundColor = "#fff";
-      document.getElementById("exportGraphTextButton").style.backgroundColor = "#fff";
-      document.getElementById("importGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("newEquationButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("clearEquationsButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("exportGraphImageButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("exportGraphTextButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("importGraphTextButton").style.backgroundColor =
+        "#fff";
       document.getElementById("sidebarButton").style.backgroundColor = "#fff";
       document.getElementById("themeButton").style.backgroundColor = "#fff";
       document.getElementById("themeButton").style.backgroundColor = "#333";
@@ -350,11 +360,16 @@ function setTheme(id) {
       document.getElementById("yLength").style.backgroundColor = "#fff";
       document.getElementById("iterations").style.backgroundColor = "#fff";
       document.getElementById("dynamicCheckbox").style.backgroundColor = "#fff";
-      document.getElementById("newEquationButton").style.backgroundColor = "#fff";
-      document.getElementById("clearEquationsButton").style.backgroundColor = "#fff";
-      document.getElementById("exportGraphImageButton").style.backgroundColor = "#fff";
-      document.getElementById("exportGraphTextButton").style.backgroundColor = "#fff";
-      document.getElementById("importGraphTextButton").style.backgroundColor = "#fff";
+      document.getElementById("newEquationButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("clearEquationsButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("exportGraphImageButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("exportGraphTextButton").style.backgroundColor =
+        "#fff";
+      document.getElementById("importGraphTextButton").style.backgroundColor =
+        "#fff";
       document.getElementById("sidebarButton").style.backgroundColor = "#fff";
       document.getElementById("themeButton").style.backgroundColor = "#fff";
       document.getElementById("themeButton").style.backgroundColor = "#333";
@@ -375,11 +390,16 @@ function setTheme(id) {
       document.getElementById("yLength").style.backgroundColor = "#000";
       document.getElementById("iterations").style.backgroundColor = "#000";
       document.getElementById("dynamicCheckbox").style.backgroundColor = "#000";
-      document.getElementById("newEquationButton").style.backgroundColor = "#000";
-      document.getElementById("clearEquationsButton").style.backgroundColor = "#000";
-      document.getElementById("exportGraphImageButton").style.backgroundColor = "#000";
-      document.getElementById("exportGraphTextButton").style.backgroundColor = "#000";
-      document.getElementById("importGraphTextButton").style.backgroundColor = "#000";
+      document.getElementById("newEquationButton").style.backgroundColor =
+        "#000";
+      document.getElementById("clearEquationsButton").style.backgroundColor =
+        "#000";
+      document.getElementById("exportGraphImageButton").style.backgroundColor =
+        "#000";
+      document.getElementById("exportGraphTextButton").style.backgroundColor =
+        "#000";
+      document.getElementById("importGraphTextButton").style.backgroundColor =
+        "#000";
       document.getElementById("sidebarButton").style.backgroundColor = "#000";
       document.getElementById("themeButton").style.backgroundColor = "#000";
       document.getElementById("themeButton").style.backgroundColor = "#eee";
@@ -394,7 +414,6 @@ function ThemeToggle() {
   theme %= 4;
   setTheme(theme);
 }
-
 
 ImportFromRefLink();
 // Initialize the graph with default values
